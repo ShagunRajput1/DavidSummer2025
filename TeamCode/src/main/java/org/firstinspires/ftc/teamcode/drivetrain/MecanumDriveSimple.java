@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.drivetrain;
 
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
@@ -6,16 +6,16 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class MecanumDriveEx {
+public class MecanumDriveSimple {
 
-    private DcMotorEx frontLeft;
-    private DcMotorEx frontRight;
-    private DcMotorEx backLeft;
-    private DcMotorEx backRight;
+    private final DcMotorEx frontLeft;
+    private final DcMotorEx frontRight;
+    private final DcMotorEx backLeft;
+    private final DcMotorEx backRight;
 
     private double speed, turn, strafe;
 
-    public MecanumDriveEx(HardwareMap hardwareMap){
+    public MecanumDriveSimple(HardwareMap hardwareMap){
         frontLeft = hardwareMap.get(DcMotorEx.class, "fl");
         frontRight = hardwareMap.get(DcMotorEx.class, "fr");
         backLeft = hardwareMap.get(DcMotorEx.class, "bl");
