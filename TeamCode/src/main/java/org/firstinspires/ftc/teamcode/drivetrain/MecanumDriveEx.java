@@ -25,7 +25,7 @@ public class MecanumDriveEx {
 
         frontRight.setDirection(DcMotorEx.Direction.REVERSE);
     }
-    public void drive(Gamepad gamepad1){
+    public void drive(Gamepad gamepad1, Telemetry telemetry){
 
         // speed and strafe on left stick; turn on right stick; it got weird sorry
         x = -gamepad1.right_stick_x;
@@ -57,13 +57,10 @@ public class MecanumDriveEx {
         backLeft.setPower(backLeftPower);
         backRight.setPower(backRightPower);
 
-       /**
         telemetry.addData("Front left Power", frontLeft.getPower());
         telemetry.addData("Front right Power", frontRight.getPower());
         telemetry.addData("Back left Power", backLeft.getPower());
         telemetry.addData("Back right Power", backRight.getPower());
         telemetry.update();
-
-        */
     }
 }

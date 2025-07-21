@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class RollerIntake {
-    private final DcMotorEx roller;
+    private DcMotorEx roller;
 
     public RollerIntake(HardwareMap hardwareMap) {
        roller  = hardwareMap.get(DcMotorEx.class, "roller");
@@ -13,7 +13,7 @@ public class RollerIntake {
 
     public void roller(Gamepad gamepad1){
         if(gamepad1.right_bumper){
-            roller.setPower(-1);
+            roller.setPower(1);
         } else {
             roller.setPower(0);
         }
