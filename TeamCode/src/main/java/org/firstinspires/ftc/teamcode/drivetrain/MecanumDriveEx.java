@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.drivetrain;
 
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -24,8 +25,9 @@ public class MecanumDriveEx {
         backRight = hardwareMap.get(DcMotorEx.class, "br");
 
         frontRight.setDirection(DcMotorEx.Direction.REVERSE);
+        backLeft.setDirection(DcMotorEx.Direction.REVERSE);
     }
-    public void drive(Gamepad gamepad1, Telemetry telemetry){
+    public void drive(Gamepad gamepad1){
 
         // speed and strafe on left stick; turn on right stick; it got weird sorry
         x = -gamepad1.right_stick_x;
@@ -57,10 +59,13 @@ public class MecanumDriveEx {
         backLeft.setPower(backLeftPower);
         backRight.setPower(backRightPower);
 
+       /**
         telemetry.addData("Front left Power", frontLeft.getPower());
         telemetry.addData("Front right Power", frontRight.getPower());
         telemetry.addData("Back left Power", backLeft.getPower());
         telemetry.addData("Back right Power", backRight.getPower());
         telemetry.update();
+
+        */
     }
 }
