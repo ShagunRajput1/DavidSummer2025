@@ -27,8 +27,7 @@ public class Main extends LinearOpMode {
         Wrist wristMovement = new Wrist(hardwareMap);
 
         waitForStart();
-
-        // initialising code will be entered before; if nothing then have to start to start code
+        if (isStopRequested()) return;
 
 
         while(opModeIsActive()){
@@ -36,10 +35,10 @@ public class Main extends LinearOpMode {
             rollerIntake.roller(gamepad1);
             slidesIntake.intakeSlides(gamepad1);
             chamberLift.liftChamber(gamepad1);
-            slidesOuttake.outtakeSlides(gamepad1);
-            armMovement.moveArm(gamepad2, telemetry);
-            clawMovement.clawMovement(gamepad1);
-            wristMovement.wristMovement(gamepad1);
+            slidesOuttake.outtakeSlides(gamepad2);
+            armMovement.moveArm(gamepad2);
+            clawMovement.clawMovement(gamepad2);
+            wristMovement.wristMovement(gamepad2, telemetry);
         }
     }
 }

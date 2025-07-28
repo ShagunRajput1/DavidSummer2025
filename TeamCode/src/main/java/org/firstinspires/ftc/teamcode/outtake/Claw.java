@@ -14,8 +14,8 @@ public class Claw {
         claw.setPosition(0);
     }
 
-    public void clawMovement(Gamepad gamepad1) {
-        if (gamepad1.b) {
+    public void clawMovement(Gamepad gamepad2) {
+        if (gamepad2.b) {
             if (claw.getPosition() == 0) {
                 claw.setPosition(1);
             } else {

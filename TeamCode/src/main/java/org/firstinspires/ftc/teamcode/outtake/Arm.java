@@ -24,7 +24,7 @@ public class Arm {
 
     }
 
-    public void moveArm(Gamepad gamepad2, Telemetry telemetry) {
+    public void moveArm(Gamepad gamepad2) {
         if (gamepad2.a) {
             if(arm1.getPosition() == .2072) {
                 arm1.setPosition(.8748);
@@ -36,10 +36,10 @@ public class Arm {
             }
         }
 
-        sleep(50);
+        sleep(100);
 
-        telemetry.addData("ARM1 POSITION: ", arm1.getPosition());
-        telemetry.addData("ARM2 POSITION: ", arm2.getPosition());
-        telemetry.update();
+//        telemetry.addData("ARM1 POSITION: ", arm1.getPosition());
+//        telemetry.addData("ARM2 POSITION: ", arm2.getPosition());
+//        telemetry.update();
     }
 }

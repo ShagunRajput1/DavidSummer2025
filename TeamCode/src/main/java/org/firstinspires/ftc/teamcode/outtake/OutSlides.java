@@ -15,11 +15,11 @@ public class OutSlides {
         outtakeSlide1.setDirection(DcMotorEx.Direction.REVERSE);
     }
 
-    public void outtakeSlides(Gamepad gamepad1){
-        if(gamepad1.dpad_up){
+    public void outtakeSlides(Gamepad gamepad2){
+        if(gamepad2.dpad_up){
             outtakeSlide1.setPower(0.7);
             outtakeSlide2.setPower(0.7);
-        } else if(gamepad1.dpad_down) {
+        } else if(gamepad2.dpad_down) {
             outtakeSlide1.setPower(-0.7);
             outtakeSlide2.setPower(-0.7);
         } else {
