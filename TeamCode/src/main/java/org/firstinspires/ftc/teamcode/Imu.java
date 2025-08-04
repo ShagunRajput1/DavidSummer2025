@@ -12,19 +12,11 @@ public class Imu {
     public Imu(HardwareMap hardwareMap) {
         imu = hardwareMap.get(IMU.class, "imu");
 
-        // Adjust the orientation parameters to match your robot
         IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
                 RevHubOrientationOnRobot.LogoFacingDirection.LEFT,
                 RevHubOrientationOnRobot.UsbFacingDirection.UP));
         imu.initialize(parameters);
-    }
 
-    public double getHeading(){
-        double heading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
-        return heading;
-    }
-
-    public void ResetYaw(){
-        imu.resetYaw();
+        double yaw = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
     }
 }

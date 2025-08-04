@@ -15,13 +15,12 @@ public class servoSetPos extends LinearOpMode {
         servo = hardwareMap.get(Servo.class, "chamber");
 
         waitForStart();
+        servo.setPosition(0);
 
         while(opModeIsActive()) {
-            if (gamepad1.a){
-                servo.setPosition(1);
-            } else if (gamepad1.b){
+            if (gamepad1.a){// start
                 servo.setPosition(0.5);
-            } else {
+            } else if (gamepad1.b){
                 servo.setPosition(0);
             }
 

@@ -14,7 +14,9 @@ public class RollerIntake {
     public void roller(Gamepad gamepad1){
         if(gamepad1.right_bumper){
             roller.setPower(-1);
-        } else {
+        } else if(gamepad1.left_bumper){
+            roller.setPower(1);
+        }else {
             roller.setPower(0);
         }
     }

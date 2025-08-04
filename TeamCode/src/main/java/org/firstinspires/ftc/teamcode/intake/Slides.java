@@ -5,11 +5,8 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-
 public class Slides {
     public DcMotorEx intakeSlides;
-    public int targetPos;
 
     public Slides(HardwareMap hardwareMap) {
         intakeSlides = hardwareMap.get(DcMotorEx.class, "inSlides");
@@ -17,8 +14,6 @@ public class Slides {
         intakeSlides.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         intakeSlides.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         intakeSlides.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); // Important for holding
-
-        targetPos = 0;
     }
 
     public void intakeSlides(Gamepad gamepad1) {
@@ -29,7 +24,5 @@ public class Slides {
         } else {
             intakeSlides.setPower(0);
         }
-
-
     }
 }
