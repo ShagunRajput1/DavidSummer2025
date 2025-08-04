@@ -10,8 +10,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Arm {
-    private Servo arm1;
-    private Servo arm2;
+    private final Servo arm1;
+    private final Servo arm2;
 
     public Arm(HardwareMap hardwareMap) {
         arm1 = hardwareMap.get(Servo.class, "arm1");

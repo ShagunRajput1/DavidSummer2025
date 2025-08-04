@@ -8,6 +8,8 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class Slides {
     public DcMotorEx intakeSlides;
 
+    Double P,I,D;
+
     public Slides(HardwareMap hardwareMap) {
         intakeSlides = hardwareMap.get(DcMotorEx.class, "inSlides");
 

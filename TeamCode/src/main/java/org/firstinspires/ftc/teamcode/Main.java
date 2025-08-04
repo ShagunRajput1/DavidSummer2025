@@ -34,7 +34,7 @@ public class Main extends LinearOpMode {
             mecanumDrive.drive(gamepad1);
             rollerIntake.roller(gamepad1);
             slidesIntake.intakeSlides(gamepad1);
-            chamberLift.liftChamber(gamepad1);
+            chamberLift.liftChamber();
             slidesOuttake.outtakeSlides(gamepad2);
             armMovement.moveArm(gamepad2);
             clawMovement.clawMovement(gamepad2);

@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Wrist {
-    private Servo wrist;
+    private final Servo wrist;
 
     public Wrist(HardwareMap hardwareMap) {
         wrist = hardwareMap.get(Servo.class, "wrist");

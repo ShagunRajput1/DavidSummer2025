@@ -7,16 +7,18 @@ import com.qualcomm.robotcore.hardware.IMU;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 public class Imu {
-    IMU imu;
-
-    public Imu(HardwareMap hardwareMap) {
+    private IMU imu;
+    public Imu(HardwareMap hardwareMap){
         imu = hardwareMap.get(IMU.class, "imu");
-
         IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
                 RevHubOrientationOnRobot.LogoFacingDirection.LEFT,
-                RevHubOrientationOnRobot.UsbFacingDirection.UP));
+                RevHubOrientationOnRobot.UsbFacingDirection.UP
+        ));
         imu.initialize(parameters);
+        imu.resetYaw();
+    }
 
-        double yaw = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
+    public double getHeading() {
+        return imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
     }
 }
