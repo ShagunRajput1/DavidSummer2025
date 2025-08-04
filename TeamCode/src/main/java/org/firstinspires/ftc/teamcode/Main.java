@@ -7,7 +7,6 @@ import org.firstinspires.ftc.teamcode.drivetrain.MecanumDriveEx;
 import org.firstinspires.ftc.teamcode.intake.Chamber;
 import org.firstinspires.ftc.teamcode.intake.RollerIntake;
 import org.firstinspires.ftc.teamcode.intake.Slides;
-import org.firstinspires.ftc.teamcode.outtake.Arm;
 import org.firstinspires.ftc.teamcode.outtake.Claw;
 import org.firstinspires.ftc.teamcode.outtake.OutSlides;
 import org.firstinspires.ftc.teamcode.outtake.Wrist;
