@@ -1,45 +1,50 @@
 package org.firstinspires.ftc.teamcode.outtake;
 
-import static android.os.SystemClock.sleep;
 
-import com.qualcomm.robotcore.hardware.DcMotorEx;
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad2;
+
+import com.arcrobotics.ftclib.gamepad.GamepadEx;
+import com.arcrobotics.ftclib.gamepad.GamepadKeys;
+import com.arcrobotics.ftclib.gamepad.ToggleButtonReader;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-
 public class Arm {
     private final Servo arm1;
     private final Servo arm2;
+    double armUp = .2072;
+    double armDown = .8748;
+    boolean isArmUp = true;
+    ToggleButtonReader armButton;
 
-    public Arm(HardwareMap hardwareMap) {
+    public Arm(HardwareMap hardwareMap, Gamepad gamepad2) {
         arm1 = hardwareMap.get(Servo.class, "arm1");
         arm2 = hardwareMap.get(Servo.class, "arm2");
 
         arm2.setDirection(Servo.Direction.REVERSE);
 
-        arm1.setPosition(.2072);
-        arm1.setPosition(.2072);
+        arm1.setPosition(armUp);
+        arm1.setPosition(armUp);
 
+        armButton = new ToggleButtonReader(
+                new GamepadEx(gamepad2), GamepadKeys.Button.A);
     }
 
-    public void moveArm(Gamepad gamepad2) {
-        if (gamepad2.a) {
-            if(arm1.getPosition() == .2072) {
-                arm1.setPosition(.8748);
-                arm2.setPosition(.8748);
+    public void moveArm() {
+        if (armButton.wasJustReleased()) {
+            if (isArmUp) {
+                arm1.setPosition(armDown);
+                arm2.setPosition(armDown);
+            } else {
+                arm1.setPosition(armUp);
+                arm2.setPosition(armUp);
             }
-            else{
-                arm1.setPosition(.2072);
-                arm2.setPosition(.2072);
-            }
+            isArmUp = !isArmUp;
         }
-
-        sleep(100);
-
-//        telemetry.addData("ARM1 POSITION: ", arm1.getPosition());
-//        telemetry.addData("ARM2 POSITION: ", arm2.getPosition());
-//        telemetry.update();
+        armButton.readValue();
+    }
+    public String telemetry(){
+        return "arm1 pos: " + arm1.getPosition();
     }
 }

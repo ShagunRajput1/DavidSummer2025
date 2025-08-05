@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.drivetrain;
 
-import com.arcrobotics.ftclib.controller.PIDController;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
@@ -17,7 +16,9 @@ public class MecanumDriveEx {
     private double power, sin, cos, max;
     private double theta;
 
-    public MecanumDriveEx(HardwareMap hardwareMap) {
+    Gamepad gamepad1;
+
+    public MecanumDriveEx(HardwareMap hardwareMap, Gamepad gamepad1) {
         frontLeft = hardwareMap.get(DcMotorEx.class, "fl");
         frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -43,9 +44,10 @@ public class MecanumDriveEx {
         frontRight.setDirection(DcMotorEx.Direction.REVERSE);
         backRight.setDirection(DcMotorEx.Direction.REVERSE);
 
+        this.gamepad1 = gamepad1;
     }
 
-    public void drive(Gamepad gamepad1) {
+    public void drive() {
 
         x = -gamepad1.left_stick_x;
         y = gamepad1.left_stick_y;

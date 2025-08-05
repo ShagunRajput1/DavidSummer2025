@@ -14,7 +14,7 @@ public class DriveTest extends LinearOpMode {
         MecanumDriveFC mecanumDriveFC = new MecanumDriveFC(hardwareMap);
 
         waitForStart();
-        if (isStopRequested()) return;
+        if (isStopRequested()){ return;}
 
         while(opModeIsActive()){
             mecanumDriveFC.driveFC(gamepad1);

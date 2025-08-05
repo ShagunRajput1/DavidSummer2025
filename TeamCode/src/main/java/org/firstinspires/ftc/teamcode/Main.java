@@ -7,6 +7,7 @@ import org.firstinspires.ftc.teamcode.drivetrain.MecanumDriveEx;
 import org.firstinspires.ftc.teamcode.intake.Chamber;
 import org.firstinspires.ftc.teamcode.intake.RollerIntake;
 import org.firstinspires.ftc.teamcode.intake.Slides;
+import org.firstinspires.ftc.teamcode.outtake.Arm;
 import org.firstinspires.ftc.teamcode.outtake.Claw;
 import org.firstinspires.ftc.teamcode.outtake.OutSlides;
 import org.firstinspires.ftc.teamcode.outtake.Wrist;
@@ -16,28 +17,36 @@ public class Main extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        MecanumDriveEx mecanumDrive = new MecanumDriveEx(hardwareMap);
-        RollerIntake rollerIntake = new RollerIntake(hardwareMap);
-        Slides slidesIntake = new Slides(hardwareMap);
-        Chamber chamberLift = new Chamber(hardwareMap);
-        OutSlides slidesOuttake = new OutSlides(hardwareMap);
-        Arm armMovement = new Arm(hardwareMap);
-        Claw clawMovement = new Claw(hardwareMap);
-        Wrist wristMovement = new Wrist(hardwareMap);
+        MecanumDriveEx mecanumDrive = new MecanumDriveEx(hardwareMap, gamepad1);
+        RollerIntake rollerIntake = new RollerIntake(hardwareMap, gamepad1);
+        Slides slidesIntake = new Slides(hardwareMap, gamepad1);
+        Chamber chamberLift = new Chamber(hardwareMap, gamepad1);
+        OutSlides slidesOuttake = new OutSlides(hardwareMap, gamepad2);
+        Arm armMovement = new Arm(hardwareMap, gamepad2);
+        Claw clawMovement = new Claw(hardwareMap, gamepad2);
+        Wrist wristMovement = new Wrist(hardwareMap, gamepad2);
 
         waitForStart();
         if (isStopRequested()) return;
 
-
         while(opModeIsActive()){
-            mecanumDrive.drive(gamepad1);
-            rollerIntake.roller(gamepad1);
-            slidesIntake.intakeSlides(gamepad1);
+            mecanumDrive.drive();
+            rollerIntake.roller();
+            slidesIntake.intakeSlides();
+            slidesOuttake.outtakeSlides();
             chamberLift.liftChamber();
-            slidesOuttake.outtakeSlides(gamepad2);
-            armMovement.moveArm(gamepad2);
-            clawMovement.clawMovement(gamepad2);
-            wristMovement.wristMovement(gamepad2, telemetry);
+            armMovement.moveArm();
+            clawMovement.clawMovement();
+            wristMovement.wristMovement();
+
+
+            telemetry.addData("", slidesIntake.telemetry());
+            telemetry.addData("", slidesOuttake.telemetry());
+            telemetry.addData("", chamberLift.telemetry());
+            telemetry.addData("", armMovement.telemetry());
+            telemetry.addData("", clawMovement.telemetry());
+            telemetry.addData("", wristMovement.telemetry());
+            telemetry.update();
         }
     }
 }
