@@ -22,6 +22,9 @@ public class motorTest extends LinearOpMode{
                 } else {
                     motor.setPower(0);
                 }
+
+                telemetry.addData("motor pos: ", motor.getCurrentPosition());
+                telemetry.update();
             }
         }
     }

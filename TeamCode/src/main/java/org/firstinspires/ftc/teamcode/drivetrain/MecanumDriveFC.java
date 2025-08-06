@@ -17,8 +17,6 @@ public class MecanumDriveFC {
     public DcMotorEx backRight;
 
     private double y, turn, x;
-    private double power, sin, cos, max;
-    private double theta;
 
     private final IMU imu;
 

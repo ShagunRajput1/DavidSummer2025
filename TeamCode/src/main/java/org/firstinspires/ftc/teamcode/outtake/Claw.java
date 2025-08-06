@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.outtake;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad2;
 
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
@@ -11,20 +10,24 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class Claw {
     private final Servo claw;
+
+
     double clawOpen = 0;
     double clawClose = 1;
     boolean isClawOpen = true;
+
+
     ToggleButtonReader clawButton;
 
-    public Claw(HardwareMap hardwareMap, Gamepad gamepad2) {
+    public Claw(HardwareMap hardwareMap, Gamepad gamepad) {
         claw = hardwareMap.get(Servo.class, "claw");
         claw.setPosition(clawOpen);
 
         clawButton = new ToggleButtonReader(
-                new GamepadEx(gamepad2), GamepadKeys.Button.B);
+                new GamepadEx(gamepad), GamepadKeys.Button.B);
     }
 
-    public void clawMovement() {
+    public void move() {
         if (clawButton.wasJustReleased()) {
             if (isClawOpen) {
                 claw.setPosition(clawClose);

@@ -6,15 +6,16 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class Wrist {
     private final Servo wrist;
-    Gamepad gamepad2;
-    public Wrist(HardwareMap hardwareMap, Gamepad gamepad2) {
+    Gamepad gamepad;
+    public Wrist(HardwareMap hardwareMap, Gamepad gamepad) {
         wrist = hardwareMap.get(Servo.class, "wrist");
-        this.gamepad2 = gamepad2;
+
+        this.gamepad = gamepad;
     }
-    public void wristMovement(){
-        if(gamepad2.dpad_left){
+    public void move(){
+        if(gamepad.dpad_left){
             wrist.setPosition(0.1589);
-        } else if(gamepad2.dpad_right) {
+        } else if(gamepad.dpad_right) {
             wrist.setPosition(0.73);
         }
     }

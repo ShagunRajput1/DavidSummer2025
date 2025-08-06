@@ -16,9 +16,9 @@ public class MecanumDriveEx {
     private double power, sin, cos, max;
     private double theta;
 
-    Gamepad gamepad1;
+    Gamepad gamepad;
 
-    public MecanumDriveEx(HardwareMap hardwareMap, Gamepad gamepad1) {
+    public MecanumDriveEx(HardwareMap hardwareMap, Gamepad gamepad) {
         frontLeft = hardwareMap.get(DcMotorEx.class, "fl");
         frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -29,12 +29,10 @@ public class MecanumDriveEx {
         frontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-
         backLeft = hardwareMap.get(DcMotorEx.class, "bl");
         backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
 
         backRight = hardwareMap.get(DcMotorEx.class, "br");
         backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -44,14 +42,14 @@ public class MecanumDriveEx {
         frontRight.setDirection(DcMotorEx.Direction.REVERSE);
         backRight.setDirection(DcMotorEx.Direction.REVERSE);
 
-        this.gamepad1 = gamepad1;
+        this.gamepad = gamepad;
     }
 
     public void drive() {
 
-        x = -gamepad1.left_stick_x;
-        y = gamepad1.left_stick_y;
-        turn = -gamepad1.right_stick_x;
+        x = -gamepad.left_stick_x;
+        y = gamepad.left_stick_y;
+        turn = -gamepad.right_stick_x;
 
         theta = Math.atan2(y, x);
         power = Math.hypot(x, y);

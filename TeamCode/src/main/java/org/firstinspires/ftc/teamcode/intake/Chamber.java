@@ -9,21 +9,23 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class Chamber {
     Servo chamber;
+
     double chamberUp = 0.1;
     double chamberDown = 0.5;
     boolean isChamberUp = true;
 
     ToggleButtonReader chamberButton;
 
-    public Chamber(HardwareMap hardwareMap, Gamepad gamepad1) {
+    public Chamber(HardwareMap hardwareMap, Gamepad gamepad) {
         chamber = hardwareMap.get(Servo.class, "chamber");
         chamber.setPosition(chamberUp);
 
+
         chamberButton = new ToggleButtonReader(
-                new GamepadEx(gamepad1), GamepadKeys.Button.A);
+                new GamepadEx(gamepad), GamepadKeys.Button.A);
     }
 
-    public void liftChamber() {
+    public void lift() {
 
         if (chamberButton.wasJustReleased()) {
             if (isChamberUp) {
@@ -35,7 +37,6 @@ public class Chamber {
         }
         chamberButton.readValue();
     }
-
     public String telemetry() {
         return "chamber pos: " + chamber.getPosition();
     }

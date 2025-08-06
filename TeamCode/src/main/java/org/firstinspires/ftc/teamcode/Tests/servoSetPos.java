@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "chamber" )
+@TeleOp(name = "servoTest" )
 public class servoSetPos extends LinearOpMode {
 
     Servo servo;
@@ -24,7 +24,7 @@ public class servoSetPos extends LinearOpMode {
                 servo.setPosition(0);
             }
 
-            telemetry.addData("chamber Position:", servo.getPosition());
+            telemetry.addData("servo Position:", servo.getPosition());
             telemetry.update();
 
         }

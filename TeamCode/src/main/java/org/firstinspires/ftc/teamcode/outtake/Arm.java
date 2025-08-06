@@ -1,8 +1,5 @@
 package org.firstinspires.ftc.teamcode.outtake;
 
-
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad2;
-
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.gamepad.ToggleButtonReader;
@@ -13,12 +10,15 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Arm {
     private final Servo arm1;
     private final Servo arm2;
+
+
     double armUp = .2072;
     double armDown = .8748;
     boolean isArmUp = true;
+
     ToggleButtonReader armButton;
 
-    public Arm(HardwareMap hardwareMap, Gamepad gamepad2) {
+    public Arm(HardwareMap hardwareMap, Gamepad gamepad) {
         arm1 = hardwareMap.get(Servo.class, "arm1");
         arm2 = hardwareMap.get(Servo.class, "arm2");
 
@@ -28,10 +28,10 @@ public class Arm {
         arm1.setPosition(armUp);
 
         armButton = new ToggleButtonReader(
-                new GamepadEx(gamepad2), GamepadKeys.Button.A);
+                new GamepadEx(gamepad), GamepadKeys.Button.A);
     }
 
-    public void moveArm() {
+    public void move() {
         if (armButton.wasJustReleased()) {
             if (isArmUp) {
                 arm1.setPosition(armDown);
@@ -44,6 +44,7 @@ public class Arm {
         }
         armButton.readValue();
     }
+
     public String telemetry(){
         return "arm1 pos: " + arm1.getPosition();
     }
