@@ -19,12 +19,12 @@ public class Claw {
 
     ToggleButtonReader clawButton;
 
-    public Claw(HardwareMap hardwareMap, Gamepad gamepad) {
+    public Claw(HardwareMap hardwareMap, Gamepad gamepad1) {
         claw = hardwareMap.get(Servo.class, "claw");
         claw.setPosition(clawOpen);
 
         clawButton = new ToggleButtonReader(
-                new GamepadEx(gamepad), GamepadKeys.Button.B);
+                new GamepadEx(gamepad1), GamepadKeys.Button.B);
     }
 
     public void move() {

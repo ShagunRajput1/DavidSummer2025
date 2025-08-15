@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-public class MecanumDriveEx {
+public class MecanumDriveEx  {
 
     public final DcMotorEx frontLeft;
     public final DcMotorEx frontRight;
@@ -16,9 +16,9 @@ public class MecanumDriveEx {
     private double power, sin, cos, max;
     private double theta;
 
-    Gamepad gamepad;
+    Gamepad gamepad1;
 
-    public MecanumDriveEx(HardwareMap hardwareMap, Gamepad gamepad) {
+    public MecanumDriveEx(HardwareMap hardwareMap, Gamepad gamepad1) {
         frontLeft = hardwareMap.get(DcMotorEx.class, "fl");
         frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -42,14 +42,13 @@ public class MecanumDriveEx {
         frontRight.setDirection(DcMotorEx.Direction.REVERSE);
         backRight.setDirection(DcMotorEx.Direction.REVERSE);
 
-        this.gamepad = gamepad;
+        this.gamepad1 = gamepad1;
     }
-
     public void drive() {
 
-        x = -gamepad.left_stick_x;
-        y = gamepad.left_stick_y;
-        turn = -gamepad.right_stick_x;
+        x = -gamepad1.left_stick_x;
+        y = gamepad1.left_stick_y;
+        turn = -gamepad1.right_stick_x;
 
         theta = Math.atan2(y, x);
         power = Math.hypot(x, y);

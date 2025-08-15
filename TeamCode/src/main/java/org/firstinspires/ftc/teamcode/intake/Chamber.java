@@ -16,13 +16,13 @@ public class Chamber {
 
     ToggleButtonReader chamberButton;
 
-    public Chamber(HardwareMap hardwareMap, Gamepad gamepad) {
+    public Chamber(HardwareMap hardwareMap, Gamepad gamepad1) {
         chamber = hardwareMap.get(Servo.class, "chamber");
         chamber.setPosition(chamberUp);
 
 
         chamberButton = new ToggleButtonReader(
-                new GamepadEx(gamepad), GamepadKeys.Button.A);
+                new GamepadEx(gamepad1), GamepadKeys.Button.A);
     }
 
     public void lift() {

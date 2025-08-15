@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.opmode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -17,11 +17,12 @@ public class Main extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
+
         MecanumDriveEx mecanumDrive = new MecanumDriveEx(hardwareMap, gamepad1);
         RollerIntake rollerIntake = new RollerIntake(hardwareMap, gamepad1);
         InSlides slidesIntake = new InSlides(hardwareMap, gamepad1);
         Chamber chamber = new Chamber(hardwareMap, gamepad1);
-        OutSlides slidesOuttake = new OutSlides(hardwareMap, gamepad2);
+        OutSlides outtakeSlides= new OutSlides(hardwareMap, gamepad2);
         Arm arm = new Arm(hardwareMap, gamepad2);
         Claw claw = new Claw(hardwareMap, gamepad2);
         Wrist wrist = new Wrist(hardwareMap, gamepad2);
@@ -34,14 +35,14 @@ public class Main extends LinearOpMode {
             mecanumDrive.drive();
             rollerIntake.spin();
             slidesIntake.extend();
-            slidesOuttake.extend();
+            outtakeSlides.extend();
             chamber.lift();
-            arm.move();
             claw.move();
+            arm.move();
             wrist.move();
-
+//
             telemetry.addData("", slidesIntake.telemetry());
-            telemetry.addData("", slidesOuttake.telemetry());
+            telemetry.addData("", outtakeSlides.telemetry());
             telemetry.addData("", chamber.telemetry());
             telemetry.addData("", arm.telemetry());
             telemetry.addData("", claw.telemetry());
