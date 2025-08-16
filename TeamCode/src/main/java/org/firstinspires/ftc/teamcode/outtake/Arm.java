@@ -46,6 +46,16 @@ public class Arm  {
         armButton.readValue();
     }
 
+    public void setArmUp(){
+        arm1.setPosition(armUp);
+        arm2.setPosition(armUp);
+    }
+
+    public void setArmDown(){
+        arm1.setPosition(armDown);
+        arm2.setPosition(armDown);
+    }
+
     public String telemetry() {
         return "arm1 pos: " + arm1.getPosition();
     }

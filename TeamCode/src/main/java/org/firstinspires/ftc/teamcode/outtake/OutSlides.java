@@ -12,7 +12,12 @@ public class OutSlides {
     private final DcMotorEx outtakeSlide2;
 
    PIDWrapper pid;
-    Gamepad gamepad2;
+   Gamepad gamepad2;
+
+    private final int POS_1 = 0;
+    private final int POS_2 = 500;
+    private final int POS_3 = 1000;
+    private final int POS_4 = 1500;
 
     public OutSlides(HardwareMap hardwareMap, Gamepad gamepad2){
         outtakeSlide1 = hardwareMap.get(DcMotorEx.class, "outSlide1");
@@ -28,29 +33,44 @@ public class OutSlides {
         this.gamepad2 = gamepad2;
     }
 
-    public void extend(){
-        if(gamepad2.dpad_up){
-            outtakeSlide1.setPower(0.7);
-            outtakeSlide2.setPower(0.7);
-        } else if(gamepad2.dpad_down) {
-            outtakeSlide1.setPower(-0.7);
-            outtakeSlide2.setPower(-0.7);
-        } else {
-            outtakeSlide1.setPower(0);
-            outtakeSlide2.setPower(0);
-        }
-    }
+//    public void extend(){
+//        if(gamepad2.dpad_up){
+//            outtakeSlide1.setPower(0.7);
+//            outtakeSlide2.setPower(0.7);
+//        } else if(gamepad2.dpad_down) {
+//            outtakeSlide1.setPower(-0.7);
+//            outtakeSlide2.setPower(-0.7);
+//        } else {
+//            outtakeSlide1.setPower(0);
+//            outtakeSlide2.setPower(0);
+//        }
+//    }
 
     public void setPID(double P, double I, double D) {
         pid.setPID(P, I, D);
     }
-
     public void setTargetPos(double pos) {
         pid.setTarget(pos);
     }
 
     public void update() {
         pid.update();
+    }
+
+    public void goToPos1() {
+        pid.setTarget(POS_1);
+    }
+
+    public void goToPos2() {
+        pid.setTarget(POS_2);
+    }
+
+    public void goToPos3() {
+        pid.setTarget(POS_3);
+    }
+
+    public void goToPos4() {
+        pid.setTarget(POS_4);
     }
 
     public String telemetry(){

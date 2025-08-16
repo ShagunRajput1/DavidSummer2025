@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
         private double P, I, D;
         private double targetPos;
 
-        private DcMotorEx[] motors;
+        private final DcMotorEx[] motors;
         private final double minOutput = -1.0, maxOutput = 1.0;
 
         /**
@@ -48,6 +48,11 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
             for (DcMotorEx motor : motors) {
                 motor.setPower(output);
             }
+        }
+
+        public void goToPosition(double targetPos) {
+            setTarget(targetPos);
+            update();
         }
 
         public double getError() {

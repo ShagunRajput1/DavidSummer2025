@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.intake;
 
-import com.arcrobotics.ftclib.controller.PIDController;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
@@ -12,6 +11,10 @@ public class InSlides {
     public DcMotorEx intakeSlide;
     PIDWrapper pid;
     private final Gamepad gamepad1;
+
+    private int PICK_UP;
+
+    private boolean autoMode = false;
 
     public InSlides(HardwareMap hardwareMap, Gamepad gamepad1) {
         intakeSlide = hardwareMap.get(DcMotorEx.class, "inSlides");
@@ -25,13 +28,29 @@ public class InSlides {
         this.gamepad1 = gamepad1;
     }
 
-    public void extend() {
-        if (gamepad1.right_trigger > 0.05) {
-            intakeSlide.setPower(gamepad1.right_trigger);
-        } else if (gamepad1.left_trigger > 0.05) {
-            intakeSlide.setPower(-gamepad1.left_trigger);
+    public void control() {
+        if (autoMode) {
+            pid.update();
+
+            if (gamepad1.right_trigger > 0.05 || gamepad1.left_trigger > 0.05) {
+                autoMode = false; // cancel auto
+            }
+
         } else {
-            intakeSlide.setPower(0);
+            // Manual control with triggers
+            if (gamepad1.right_trigger > 0.05) {
+                intakeSlide.setPower(gamepad1.right_trigger);
+            } else if (gamepad1.left_trigger > 0.05) {
+                intakeSlide.setPower(-gamepad1.left_trigger);
+            } else {
+                intakeSlide.setPower(0);
+            }
+
+            // Switch into auto mode if B is pressed
+            if (gamepad1.b) {
+                pid.setTarget(PICK_UP);
+                autoMode = true;
+            }
         }
     }
 
@@ -48,6 +67,8 @@ public class InSlides {
     }
 
     public String telemetry() {
-        return "Intake slides pos: " + intakeSlide.getCurrentPosition();
+        return "Intake slides pos: " + intakeSlide.getCurrentPosition() +
+                " target: " + pid.getTarget() +
+                " autoMode: " + autoMode;
     }
 }

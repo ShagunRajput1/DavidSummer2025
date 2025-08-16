@@ -38,6 +38,15 @@ public class Claw {
         }
         clawButton.readValue();
     }
+
+    public void openClaw(){
+        claw.setPosition(clawOpen);
+    }
+
+    public void closeClaw(){
+        claw.setPosition(clawClose);
+    }
+
     public String telemetry(){
         return "claw pos: " + claw.getPosition();
     }

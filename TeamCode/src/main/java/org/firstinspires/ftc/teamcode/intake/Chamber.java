@@ -37,7 +37,20 @@ public class Chamber {
         }
         chamberButton.readValue();
     }
+
     public String telemetry() {
         return "chamber pos: " + chamber.getPosition();
+    }
+
+    public void setChamberDown(){
+        if (isChamberUp){
+            chamber.setPosition(chamberDown);
+        }
+    }
+
+    public void setChamberUp(){
+        if (!isChamberUp){
+            chamber.setPosition(chamberUp);
+        }
     }
 }

@@ -18,7 +18,7 @@ import org.firstinspires.ftc.teamcode.pedroPathing.constants.LConstants;
 
 /**
  * This is the CurvedBackAndForth autonomous OpMode. It runs the robot in a specified distance
- * forward and to the left. On reaching the end of the forward Path, the robot runs the backward
+ * forward and to the lﬁeft. On reaching the end of the forward Path, the robot runs the backward
  * Path the same distance back to the start. Rinse and repeat! This is good for testing a variety
  * of Vectors, like the drive Vector, the translational Vector, the heading Vector, and the
  * centripetal Vector. Remember to test your tunings on StraightBackAndForth as well, since tunings
