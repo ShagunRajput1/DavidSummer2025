@@ -12,14 +12,14 @@ public class OutSlides {
     private final DcMotorEx outtakeSlide2;
 
    PIDWrapper pid;
-   Gamepad gamepad2;
+//   Gamepad gamepad2;
 
     private final int POS_1 = 0;
     private final int POS_2 = 500;
     private final int POS_3 = 1000;
     private final int POS_4 = 1500;
 
-    public OutSlides(HardwareMap hardwareMap, Gamepad gamepad2){
+    public OutSlides(HardwareMap hardwareMap ){
         outtakeSlide1 = hardwareMap.get(DcMotorEx.class, "outSlide1");
         outtakeSlide2 = hardwareMap.get(DcMotorEx.class, "outSlide2");
 
@@ -30,7 +30,7 @@ public class OutSlides {
 
         pid = new PIDWrapper(new DcMotorEx[]{outtakeSlide1, outtakeSlide2}, 0.009, 0.0003, 0);
 
-        this.gamepad2 = gamepad2;
+//        this.gamepad2 = gamepad2;
     }
 
 //    public void extend(){
