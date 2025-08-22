@@ -1,7 +1,8 @@
-package org.firstinspires.ftc.teamcode.drivetrain;
+package org.firstinspires.ftc.teamcode.Subsystems.drivetrain;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -39,16 +40,18 @@ public class MecanumDriveEx  {
         backRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        frontRight.setDirection(DcMotorEx.Direction.REVERSE);
-        backRight.setDirection(DcMotorEx.Direction.REVERSE);
+        frontLeft.setDirection(DcMotorEx.Direction.REVERSE);
+        backLeft.setDirection(DcMotorEx.Direction.REVERSE);
+        frontRight.setDirection(DcMotorEx.Direction.FORWARD);
+        backRight.setDirection(DcMotorEx.Direction.FORWARD);
 
         this.gamepad1 = gamepad1;
     }
     public void drive() {
 
-        x = -gamepad1.left_stick_x;
-        y = gamepad1.left_stick_y;
-        turn = -gamepad1.right_stick_x;
+        x = gamepad1.left_stick_x;
+        y = -gamepad1.left_stick_y;
+        turn = gamepad1.right_stick_x;
 
         theta = Math.atan2(y, x);
         power = Math.hypot(x, y);

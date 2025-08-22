@@ -1,12 +1,11 @@
-package org.firstinspires.ftc.teamcode.pidTuning;
+package org.firstinspires.ftc.teamcode.tests;
 
 
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.intake.InSlides;
-import org.firstinspires.ftc.teamcode.outtake.OutSlides;
+import org.firstinspires.ftc.teamcode.Subsystems.outtake.OutSlides;
 
 @Config
 @TeleOp
@@ -17,7 +16,7 @@ public class SlidesTuning extends LinearOpMode{
 
     @Override
     public void runOpMode() throws InterruptedException{
-        InSlides slides = new InSlides(hardwareMap, gamepad1);
+        OutSlides slides = new OutSlides(hardwareMap, gamepad1);
         waitForStart();
         while(opModeIsActive()){
             slides.setPID(p, i, d);
