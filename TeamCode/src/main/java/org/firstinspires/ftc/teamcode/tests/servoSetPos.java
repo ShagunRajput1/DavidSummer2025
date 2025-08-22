@@ -39,7 +39,7 @@ public class servoSetPos extends LinearOpMode {
                 if (gamepad1.dpad_up){
                     chamber.setPosition(chamber.getPosition() + 0.001);
                 } else if (gamepad1.dpad_down){
-                    chamber.setPosition((chamber.getPosition()) + 0.001);
+                    chamber.setPosition((chamber.getPosition()) - 0.001);
                 }
             }else if(gamepad1.b){ // arms
                 if (gamepad1.dpad_up){

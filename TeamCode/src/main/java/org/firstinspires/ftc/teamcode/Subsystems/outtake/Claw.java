@@ -38,10 +38,12 @@ public class Claw {
     }
         public void openClaw () {
             claw.setPosition(clawOpen);
+            isClawOpen = true;
         }
 
         public void closeClaw () {
             claw.setPosition(clawClose);
+            isClawOpen = false;
         }
 
         public String telemetry () {

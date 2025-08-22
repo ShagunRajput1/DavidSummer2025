@@ -52,11 +52,13 @@ public class Arm {
     public void setArmUp() {
         arm1.setPosition(arm1Up);
         arm2.setPosition(arm2Up);
+        isArmUp = true;
     }
 
     public void setArmDown() {
         arm1.setPosition(arm1Down);
         arm2.setPosition(arm2Down);
+        isArmUp = false;
     }
 
     public String telemetry() {

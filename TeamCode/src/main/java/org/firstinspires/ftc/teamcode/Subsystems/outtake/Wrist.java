@@ -9,10 +9,10 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class Wrist {
     private final Servo wrist;
-    double PICK_UP = .3938;
+    double PICK_UP = .3838;
     double DROP_OFF = .6417;
 
-    boolean isWristAtPickUp = true;
+    boolean isWristAtPickUp = false;
 
     ToggleButtonReader wristButton;
 
@@ -42,10 +42,12 @@ public class Wrist {
 
     public void toPickUp(){
         wrist.setPosition(PICK_UP);
+        isWristAtPickUp = true;
     }
 
     public void toDropOff(){
         wrist.setPosition(DROP_OFF);
+        isWristAtPickUp = false;
     }
 
     public String telemetry(){
