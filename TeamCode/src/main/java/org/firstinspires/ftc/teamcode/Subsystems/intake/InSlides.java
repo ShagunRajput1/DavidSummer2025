@@ -11,7 +11,7 @@ public class InSlides {
     private final PIDController controller;
     private double P = 0.006, I = 0, D = 0;
     private double targetPos;
-    int PICK_UP = -8;
+    int PICK_UP = 8;
 
     private boolean pidMode = false;
 

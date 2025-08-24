@@ -15,17 +15,13 @@ import org.firstinspires.ftc.teamcode.Commands.Steps.Wait;
 import org.firstinspires.ftc.teamcode.Commands.Steps.WristToDrop;
 import org.firstinspires.ftc.teamcode.Commands.Steps.WristToPickUp;
 import org.firstinspires.ftc.teamcode.David;
-import org.firstinspires.ftc.teamcode.Subsystems.outtake.Arm;
-import org.firstinspires.ftc.teamcode.Subsystems.outtake.Claw;
-import org.firstinspires.ftc.teamcode.Subsystems.outtake.OutSlides;
-import org.firstinspires.ftc.teamcode.Subsystems.outtake.Wrist;
 
 public class DropToBucket1 extends SequentialCommand {
     ButtonReader DropToBucket1Button;
 
     public DropToBucket1(Gamepad gamepad1){
         super(
-                new OuttakeToBucket1(David.outtakeSlides),
+                new OuttakeToBucket1(David.outtakeSlides, David.outtakeSlides.controller),
                 new ArmUp(David.arm),
                 new Wait(500),
                 new WristToDrop(David.wrist),
@@ -36,7 +32,7 @@ public class DropToBucket1 extends SequentialCommand {
                 new Wait(500),
                 new ArmDown(David.arm),
                 new Wait(500),
-                new OuttakeToPos1(David.outtakeSlides)
+                new OuttakeToPos1(David.outtakeSlides, David.outtakeSlides.controller)
         );
         DropToBucket1Button = new ButtonReader(
                 new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_DOWN);

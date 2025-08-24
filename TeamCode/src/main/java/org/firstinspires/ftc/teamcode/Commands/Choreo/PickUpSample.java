@@ -17,10 +17,10 @@ public class PickUpSample extends SequentialCommand {
 
     public PickUpSample(Gamepad gamepad1) {
         super(
-                new OuttakeToPos0(David.outtakeSlides),
+                new OuttakeToPos0(David.outtakeSlides, David.outtakeSlides.controller),
                 new ClawClose(David.claw),
                 new Wait(500),
-                new OuttakeToPos1(David.outtakeSlides)
+                new OuttakeToPos1(David.outtakeSlides, David.outtakeSlides.controller)
         );
         pickUpSampleButton = new ButtonReader(
                 new GamepadEx(gamepad1), GamepadKeys.Button.B);

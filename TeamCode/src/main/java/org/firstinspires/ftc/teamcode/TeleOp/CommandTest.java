@@ -41,6 +41,9 @@ public class CommandTest extends LinearOpMode {
                 dropToBucket2.runRoutine(); // Dpad Up
 
                 telemetry.addData("", David.outtakeSlides.telemetry());
+                telemetry.addData("", David.outtakeSlides.getCurrentPosition());
+                telemetry.addData("", David.outtakeSlides.setTargetPos());
+
                 telemetry.addData("", David.arm.telemetry());
                 telemetry.addData("", David.wrist.telemetry());
                 telemetry.update();

@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class Wrist {
     private final Servo wrist;
-    double PICK_UP = .3594;
+    double PICK_UP = .3694;
     double DROP_OFF = .6417;
 
     boolean isWristAtPickUp = false;

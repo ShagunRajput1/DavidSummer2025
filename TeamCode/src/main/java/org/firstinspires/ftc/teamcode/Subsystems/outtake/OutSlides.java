@@ -18,11 +18,11 @@ public class OutSlides {
     private final DcMotorEx outtakeSlide1;
     private final DcMotorEx outtakeSlide2;
 
-    private PIDController controller;
-    private double P = 0.005, I = 0.001, D = 0.0005;
+    public PIDController controller;
+    private double P = 0.02, I = 0.02, D = 0;
     Double targetPos;
 
-    double[] slidesPositions = {148, 469, 845, 2007};
+    double[] slidesPositions = {203, 469, 845, 2007};
     int currentIndex = 0;
 
     ToggleButtonReader Dpad_Up;

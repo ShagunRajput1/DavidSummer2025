@@ -20,7 +20,7 @@ public class DropToBucket2 extends SequentialCommand {
     ButtonReader DropToBucket2Button;
     public DropToBucket2(Gamepad gamepad1){
         super(
-                new OuttakeToBucket2(David.outtakeSlides),
+                new OuttakeToBucket2(David.outtakeSlides, David.outtakeSlides.controller),
                 new ArmUp(David.arm),
                 new Wait(500),
                 new WristToDrop(David.wrist),
@@ -31,7 +31,7 @@ public class DropToBucket2 extends SequentialCommand {
                 new Wait(500),
                 new ArmDown(David.arm),
                 new Wait(500),
-                new OuttakeToPos1(David.outtakeSlides)
+                new OuttakeToPos1(David.outtakeSlides, David.outtakeSlides.controller)
         );
         DropToBucket2Button = new ButtonReader(
                 new GamepadEx(gamepad1), GamepadKeys.Button.DPAD_UP);
