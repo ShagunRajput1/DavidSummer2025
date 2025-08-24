@@ -15,7 +15,7 @@ public class OuttakeToBucket1 extends Command {
     }
 
     public void init() {
-        outSlides.setTargetPos(845);
+        outSlides.setIndex(2);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class OuttakeToBucket1 extends Command {
         double velocity = outSlides.getVelocity(); // You’ll need to expose this in OutSlides
         if (Math.abs(outSlides.getCurrentPosition() - targetPos) < tolerance
                 && Math.abs(velocity) < 10) {
-            controller.reset();
+            outSlides.zeroPower();
             return true;
         } else {
             return false;

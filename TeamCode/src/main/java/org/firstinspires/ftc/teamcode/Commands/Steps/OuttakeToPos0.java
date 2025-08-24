@@ -9,13 +9,15 @@ public class OuttakeToPos0 extends Command {
     private final OutSlides outSlides;
     PIDController controller;
 
+    double targetPos = 203;
+
     public OuttakeToPos0(OutSlides outSlides, PIDController controller) {
         this.outSlides = outSlides;
         this.controller = controller;
     }
 
     public void init(){
-        outSlides.setTargetPos(203);
+        outSlides.setIndex(0);
     }
 
     @Override
@@ -25,12 +27,11 @@ public class OuttakeToPos0 extends Command {
 
     @Override
     public boolean isFinished() {
-        double targetPos = 203;
         double tolerance = 30;
         double velocity = outSlides.getVelocity(); // You’ll need to expose this in OutSlides
         if (Math.abs(outSlides.getCurrentPosition() - targetPos) < tolerance
                 && Math.abs(velocity) < 10) {
-//            controller.reset();
+            outSlides.zeroPower();
             return true;
         } else {
             return false;

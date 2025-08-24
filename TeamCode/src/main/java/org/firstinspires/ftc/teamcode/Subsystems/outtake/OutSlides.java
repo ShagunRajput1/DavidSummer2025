@@ -1,18 +1,12 @@
 package org.firstinspires.ftc.teamcode.Subsystems.outtake;
 
-//import static org.firstinspires.ftc.teamcode.util.Logger.*;
-
 import com.arcrobotics.ftclib.controller.PIDController;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.gamepad.ToggleButtonReader;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.util.Logger;
 
 public class OutSlides {
     private final DcMotorEx outtakeSlide1;
@@ -32,8 +26,8 @@ public class OutSlides {
         outtakeSlide1 = hardwareMap.get(DcMotorEx.class, "outSlide1");
         outtakeSlide2 = hardwareMap.get(DcMotorEx.class, "outSlide2");
 
-        outtakeSlide1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        outtakeSlide2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        outtakeSlide1.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        outtakeSlide2.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
         outtakeSlide1.setDirection(DcMotorEx.Direction.REVERSE);
 
@@ -77,10 +71,15 @@ public class OutSlides {
 //        Logger.log("outtakeSlide setPID P " + P + " I " + I + " D " + D);
     }
 
+    public void setIndex(int index){
+        targetPos = slidesPositions[currentIndex];
+    }
+
     public void setTargetPos(double targetPos) {
         this.targetPos = targetPos;
 //        Logger.log("outtakeSlide Set Target  pos " + this.targetPos);
     }
+
     public void update() {
         double currentPos = outtakeSlide1.getCurrentPosition();
         double error = targetPos - currentPos;
@@ -94,6 +93,7 @@ public class OutSlides {
 //        Logger.log("outtakeSlide : Update: CurrPos " + currentPos + " TargetPos " + targetPos +
 //                " Power " + power);
     }
+
     public String telemetry(){
         //Logger.log("outtakeSlide1  pos " + outtakeSlide1.getCurrentPosition());
         return "outtake slide pos: " + outtakeSlide1.getCurrentPosition();
@@ -105,5 +105,14 @@ public class OutSlides {
 
     public double getVelocity() {
         return outtakeSlide1.getVelocity();
+    }
+
+    public void zeroPower(){
+        outtakeSlide2.setPower(0);
+        outtakeSlide1.setPower(0);
+    }
+
+    public double getTargetPosition(){
+        return slidesPositions[currentIndex];
     }
 }
