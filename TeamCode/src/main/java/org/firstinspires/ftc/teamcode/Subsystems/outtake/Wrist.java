@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class Wrist {
     private final Servo wrist;
-    double PICK_UP = .3838;
+    double PICK_UP = .3594;
     double DROP_OFF = .6417;
 
     boolean isWristAtPickUp = false;
@@ -52,5 +52,9 @@ public class Wrist {
 
     public String telemetry(){
         return "wrist pos: " + wrist.getPosition();
+    }
+
+    public double getCurrentPosition() {
+        return wrist.getPosition();
     }
 }

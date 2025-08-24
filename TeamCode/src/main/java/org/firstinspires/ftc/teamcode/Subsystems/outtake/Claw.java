@@ -12,12 +12,12 @@ public class Claw {
 
     double clawOpen = 0.25;
     double clawClose = 0;
-    boolean isClawOpen = false;
+    boolean isClawOpen = true;
     ToggleButtonReader clawButton;
 
     public Claw(HardwareMap hardwareMap, Gamepad gamepad) {
         claw = hardwareMap.get(Servo.class, "claw");
-        claw.setPosition(clawClose);
+        claw.setPosition(clawOpen);
 
         clawButton = new ToggleButtonReader(
                 new GamepadEx(gamepad), GamepadKeys.Button.B);
@@ -49,4 +49,8 @@ public class Claw {
         public String telemetry () {
             return "claw pos: " + claw.getPosition();
         }
+
+    public double getCurrentPosition() {
+        return claw.getPosition();
     }
+}

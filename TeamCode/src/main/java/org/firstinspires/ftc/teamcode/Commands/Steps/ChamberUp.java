@@ -4,7 +4,7 @@ import org.firstinspires.ftc.teamcode.CommandSystem.Command;
 import org.firstinspires.ftc.teamcode.Subsystems.intake.Chamber;
 
 public class ChamberUp extends Command {
-    private Chamber chamber;
+    private final Chamber chamber;
 
     public ChamberUp(Chamber chamber) {
         this.chamber = chamber;
@@ -20,7 +20,7 @@ public class ChamberUp extends Command {
 
     @Override
     public boolean isFinished() {
-        return true;
+       return true;
     }
 
     @Override

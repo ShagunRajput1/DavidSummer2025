@@ -11,11 +11,13 @@ public class Arm {
     private final Servo arm1;
     private final Servo arm2;
 
+    double tolerance = 0.002;
+
 
     double arm1Up = 0.0561;
     double arm2Up = .9433;
-    double arm1Down = .8889;
-    double arm2Down = .1106;
+    double arm1Down = .8828;
+    double arm2Down = .1167;
 
     ToggleButtonReader armButton;
 
@@ -65,4 +67,26 @@ public class Arm {
         return "arm1 pos: " + arm1.getPosition() +
                 "\narm2 pos: " + arm2.getPosition();
     }
+
+    public double getFirstPosition() {
+        return arm1.getPosition();
+    }
+
+    public double getSecondPosition() {
+        return arm2.getPosition();
+    }
+
+//    public boolean atDownPosition(){
+//        boolean firstAtTarget = Math.abs(arm1.getPosition() - arm1Down) < tolerance;
+//        boolean secondAtTarget = Math.abs(arm2.getPosition() - arm2Down) < tolerance;
+//
+//        return firstAtTarget && secondAtTarget;
+//    }
+//
+//    public boolean atUpPosition() {
+//        boolean firstAtTarget = Math.abs(arm1.getPosition() - arm1Up) < tolerance;
+//        boolean secondAtTarget = Math.abs(arm2.getPosition() - arm2Up) < tolerance;
+//
+//        return firstAtTarget && secondAtTarget;
+//    }
 }

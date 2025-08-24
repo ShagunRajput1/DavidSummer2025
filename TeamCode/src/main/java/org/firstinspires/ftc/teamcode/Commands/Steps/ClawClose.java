@@ -20,7 +20,7 @@ public class ClawClose extends Command {
 
     @Override
     public boolean isFinished() {
-        return true;
+       return true;
     }
 
     @Override

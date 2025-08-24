@@ -6,31 +6,38 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.CommandSystem.SequentialCommand;
+import org.firstinspires.ftc.teamcode.Commands.Steps.ArmDown;
 import org.firstinspires.ftc.teamcode.Commands.Steps.ClawClose;
 import org.firstinspires.ftc.teamcode.Commands.Steps.OuttakeToPos0;
 import org.firstinspires.ftc.teamcode.Commands.Steps.OuttakeToPos1;
 import org.firstinspires.ftc.teamcode.Commands.Steps.Wait;
+import org.firstinspires.ftc.teamcode.Commands.Steps.WristToPickUp;
 import org.firstinspires.ftc.teamcode.David;
+import org.firstinspires.ftc.teamcode.Subsystems.outtake.Arm;
+import org.firstinspires.ftc.teamcode.Subsystems.outtake.Claw;
+import org.firstinspires.ftc.teamcode.Subsystems.outtake.OutSlides;
+import org.firstinspires.ftc.teamcode.Subsystems.outtake.Wrist;
 
-public class PickUpSample extends SequentialCommand {
-    ButtonReader pickUpSampleButton;
+public class PickUpPrep extends SequentialCommand {
+    ButtonReader pickUpPrepButton;
 
-    public PickUpSample(Gamepad gamepad1) {
+    public PickUpPrep(Gamepad gamepad1) {
         super(
-                new OuttakeToPos0(David.outtakeSlides),
-                new ClawClose(David.claw),
+                new OuttakeToPos1(David.outtakeSlides),
+                new ArmDown(David.arm),
                 new Wait(500),
-                new OuttakeToPos1(David.outtakeSlides)
+                new WristToPickUp(David.wrist),
+                new Wait(500)
         );
-        pickUpSampleButton = new ButtonReader(
-                new GamepadEx(gamepad1), GamepadKeys.Button.B);
+        pickUpPrepButton = new ButtonReader(
+                new GamepadEx(gamepad1), GamepadKeys.Button.Y);
     }
 
     public void runRoutine() {
 
-        pickUpSampleButton.readValue();
+        pickUpPrepButton.readValue();
 
-        if (pickUpSampleButton.wasJustReleased()){
+        if (pickUpPrepButton.wasJustReleased()){
             this.init();
         }
 

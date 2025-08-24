@@ -11,17 +11,21 @@ public class OuttakeToBucket2 extends Command {
     }
 
     public void init(){
-        outSlides.goToPos3();
+        outSlides.setTargetPos(2007);
     }
 
     @Override
     public void update() {
-
+        outSlides.update();
     }
 
     @Override
     public boolean isFinished() {
-        return true;
+        double targetPos = 2007;
+        double tolerance = 20;
+        double velocity = outSlides.getVelocity(); // You’ll need to expose this in OutSlides
+        return Math.abs(outSlides.getCurrentPosition() - targetPos) < tolerance
+                && Math.abs(velocity) < 10;
     }
 
     @Override

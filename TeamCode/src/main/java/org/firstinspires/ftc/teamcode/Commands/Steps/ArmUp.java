@@ -5,13 +5,12 @@ import org.firstinspires.ftc.teamcode.Subsystems.outtake.Arm;
 
 public class ArmUp extends Command {
     private final Arm arm;
-
     public ArmUp(Arm arm) {
         this.arm = arm;
     }
 
     public void init(){
-        arm.setArmDown();
+        arm.setArmUp();
     }
 
     @Override

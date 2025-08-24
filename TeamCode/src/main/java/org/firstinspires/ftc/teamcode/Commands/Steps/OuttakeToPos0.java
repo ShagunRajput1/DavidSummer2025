@@ -11,17 +11,21 @@ public class OuttakeToPos0 extends Command {
     }
 
     public void init(){
-        outSlides.goToPos0();
+        outSlides.setTargetPos(148);
     }
 
     @Override
     public void update() {
-
+        outSlides.update();
     }
 
     @Override
     public boolean isFinished() {
-        return true;
+        double targetPos = 148;
+        double tolerance = 30;
+        double velocity = outSlides.getVelocity(); // You’ll need to expose this in OutSlides
+        return Math.abs(outSlides.getCurrentPosition() - targetPos) < tolerance
+                && Math.abs(velocity) < 10;
     }
 
     @Override

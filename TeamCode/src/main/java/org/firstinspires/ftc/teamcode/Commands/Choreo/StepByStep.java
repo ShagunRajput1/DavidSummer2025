@@ -6,31 +6,32 @@ import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.CommandSystem.SequentialCommand;
+import org.firstinspires.ftc.teamcode.Commands.Steps.ArmDown;
+import org.firstinspires.ftc.teamcode.Commands.Steps.ArmUp;
 import org.firstinspires.ftc.teamcode.Commands.Steps.ClawClose;
-import org.firstinspires.ftc.teamcode.Commands.Steps.OuttakeToPos0;
-import org.firstinspires.ftc.teamcode.Commands.Steps.OuttakeToPos1;
+import org.firstinspires.ftc.teamcode.Commands.Steps.ClawOpen;
+import org.firstinspires.ftc.teamcode.Commands.Steps.OuttakeToBucket1;
 import org.firstinspires.ftc.teamcode.Commands.Steps.Wait;
+import org.firstinspires.ftc.teamcode.Commands.Steps.WristToDrop;
+import org.firstinspires.ftc.teamcode.Commands.Steps.WristToPickUp;
 import org.firstinspires.ftc.teamcode.David;
 
-public class PickUpSample extends SequentialCommand {
-    ButtonReader pickUpSampleButton;
+public class StepByStep extends SequentialCommand {
+    ButtonReader A;
 
-    public PickUpSample(Gamepad gamepad1) {
+    public StepByStep(Gamepad gamepad1){
         super(
-                new OuttakeToPos0(David.outtakeSlides),
-                new ClawClose(David.claw),
-                new Wait(500),
-                new OuttakeToPos1(David.outtakeSlides)
+                new OuttakeToBucket1(David.outtakeSlides)
         );
-        pickUpSampleButton = new ButtonReader(
-                new GamepadEx(gamepad1), GamepadKeys.Button.B);
+        A = new ButtonReader(
+                new GamepadEx(gamepad1), GamepadKeys.Button.A);
     }
 
     public void runRoutine() {
 
-        pickUpSampleButton.readValue();
+        A.readValue();
 
-        if (pickUpSampleButton.wasJustReleased()){
+        if (A.wasJustReleased()) {
             this.init();
         }
 
@@ -42,5 +43,4 @@ public class PickUpSample extends SequentialCommand {
     public boolean isRunning() {
         return !this.isFinished();
     }
-
 }

@@ -1,12 +1,11 @@
 package org.firstinspires.ftc.teamcode.Subsystems.outtake;
 
-import static org.firstinspires.ftc.teamcode.util.Logger.*;
+//import static org.firstinspires.ftc.teamcode.util.Logger.*;
 
 import com.arcrobotics.ftclib.controller.PIDController;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.gamepad.ToggleButtonReader;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
@@ -20,16 +19,11 @@ public class OutSlides {
     private final DcMotorEx outtakeSlide2;
 
     private PIDController controller;
-    private double P = .02, I = 0.02, D = 0.002;
+    private double P = 0.005, I = 0.001, D = 0.0005;
     Double targetPos;
 
-    private final int POS_0 = 196;
-    private final int POS_1 = 479;
-    private final int BUCKET_1 = 845;
-    private final int BUCKET_2 = 2007;
-
-    double[] slidesPositions = {190, 479, 845, 2007};
-    int currentIndex = 1;
+    double[] slidesPositions = {148, 469, 845, 2007};
+    int currentIndex = 0;
 
     ToggleButtonReader Dpad_Up;
     ToggleButtonReader Dpad_Down;
@@ -75,34 +69,17 @@ public class OutSlides {
         update();
     }
 
-    public void goToPos0(){
-        targetPos = slidesPositions[0];
-        update();
-    }
-    public void goToPos1(){
-        targetPos = slidesPositions[1];
-        update();
-    }
-    public void goToPos2(){
-        targetPos = slidesPositions[2];
-        update();
-    }
-    public void goToPos3(){
-        targetPos = slidesPositions[3];
-        update();
-    }
-
     public void setPID(double P, double I, double D) {
         this.P = P;
         this.I = I;
         this.D = D;
         controller.setPID(P, I, D);
-        Logger.log("outtakeSlide setPID P " + P + " I " + I + " D " + D);
+//        Logger.log("outtakeSlide setPID P " + P + " I " + I + " D " + D);
     }
 
     public void setTargetPos(double targetPos) {
         this.targetPos = targetPos;
-        Logger.log("outtakeSlide Set Target  pos " + this.targetPos);
+//        Logger.log("outtakeSlide Set Target  pos " + this.targetPos);
     }
     public void update() {
         double currentPos = outtakeSlide1.getCurrentPosition();
@@ -114,10 +91,19 @@ public class OutSlides {
         outtakeSlide1.setPower(power);
         outtakeSlide2.setPower(power);
 
-        Logger.log("outtakeSlide : Update: Set power " + power);
+//        Logger.log("outtakeSlide : Update: CurrPos " + currentPos + " TargetPos " + targetPos +
+//                " Power " + power);
     }
     public String telemetry(){
-        Logger.log("outtakeSlide1  pos " + outtakeSlide1.getCurrentPosition());
+        //Logger.log("outtakeSlide1  pos " + outtakeSlide1.getCurrentPosition());
         return "outtake slide pos: " + outtakeSlide1.getCurrentPosition();
+    }
+
+    public double getCurrentPosition() {
+        return outtakeSlide1.getCurrentPosition();
+    }
+
+    public double getVelocity() {
+        return outtakeSlide1.getVelocity();
     }
 }

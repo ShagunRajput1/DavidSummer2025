@@ -11,7 +11,7 @@ public class InSlides {
     private final PIDController controller;
     private double P = 0.006, I = 0, D = 0;
     private double targetPos;
-    int PICK_UP = 0;
+    int PICK_UP = -8;
 
     private boolean pidMode = false;
 
@@ -31,7 +31,7 @@ public class InSlides {
 
     public void control(){
 
-        if (gamepad.dpad_up) {
+        if (gamepad.x) {
             setTargetPos(PICK_UP);
             pidMode = true;
         } else if (gamepad.right_trigger > 0.05 || gamepad.left_trigger > 0.05) {

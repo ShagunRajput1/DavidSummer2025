@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Chamber {
     Servo chamber;
     double chamberUp = 0;
-    double chamberDown = .2722;
+    double chamberDown = .27;
     boolean isChamberUp = true;
     ToggleButtonReader chamberButton;
 
@@ -47,6 +47,9 @@ public class Chamber {
         isChamberUp = false;
     }
 
+    public double getCurrentPosition(){
+        return chamber.getPosition();
+    }
 
     public String telemetry() {
         return "chamber pos: " + chamber.getPosition();
